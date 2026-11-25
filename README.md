@@ -172,6 +172,10 @@ python -m unittest discover -s tests -v
 
 The scripts in `demos/` need a webcam and a desktop session. Run them from the repo root, for example `python demos/live_risk_monitor.py`.
 
+## 📬 Contact
+
+Questions, ideas or collaboration: **[tejas_shekar29@outlook.com](mailto:tejas_shekar29@outlook.com)** · GitHub [@Tejashekar](https://github.com/Tejashekar)
+
 ---
 
 <p align="center"><sub>Research prototype for <i>Context-Aware Shoulder-Surfing Prevention Using Gaze, Proximity, OCR-Based PII Detection, and Adaptive Screen Overlays</i>.</sub></p>
