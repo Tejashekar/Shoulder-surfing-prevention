@@ -1,0 +1,10 @@
+# Tested with Python 3.11 on Windows 11.
+# Tesseract OCR must be installed separately (see README).
+opencv-python>=4.8
+mediapipe==0.10.11      # uses the legacy mp.solutions API (FaceDetection / FaceMesh)
+numpy>=1.24
+pytesseract>=0.3.10
+PyAutoGUI>=0.9.54
+psutil>=5.9
+matplotlib>=3.7
+Pillow>=10.0

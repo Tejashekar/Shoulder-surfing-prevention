@@ -36,9 +36,15 @@ class FaceDetector:
                 width = int(bbox.width * w)
                 height = int(bbox.height * h)
 
+                x = max(0, min(x, w - 1))
+                y = max(0, min(y, h - 1))
+                width = max(0, min(width, w - x))
+                height = max(0, min(height, h - y))
+
                 faces.append((x, y, width, height))
 
         return faces
 
     def release(self):
         self.cap.release()
+        self.detector.close()

@@ -1,0 +1,8 @@
+{
+  "weights": {"gaze": 0.32, "proximity": 0.28, "pii": 0.30},
+  "crowd_points": 18.0,
+  "dwell_max_points": 20.0,
+  "dwell_saturation_seconds": 5.0,
+  "thresholds": {"no_action": 35.0, "selective_blur": 35.0, "fake_overlay": 75.0, "risk_medium": 35.0, "risk_high": 70.0},
+  "features": {"gaze": true, "proximity": true, "dwell": true, "pii": true}
+}

@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-labelledby="t d">
+  <title id="t">OcuVeil pipeline</title>
+  <desc id="d">Webcam frames feed face detection, gaze, proximity and dwell signals; screen captures feed OCR and PII detection; all signals are fused into a 0 to 100 risk score that selects no action, selective blur, or a full decoy overlay.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070b1a"/>
+      <stop offset="1" stop-color="#121834"/>
+    </linearGradient>
+    <linearGradient id="fuse" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#60a5fa"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="420" rx="20" fill="url(#bg)"/>
+
+  <g font-family="Segoe UI, Helvetica Neue, Arial, sans-serif">
+    <!-- Lane labels -->
+    <text x="40" y="44" font-size="12" font-weight="700" letter-spacing="2" fill="#5eead4">WHO IS LOOKING</text>
+    <text x="40" y="262" font-size="12" font-weight="700" letter-spacing="2" fill="#a78bfa">WHAT IS ON SCREEN</text>
+
+    <!-- Connectors (animated flow) -->
+    <g fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="6 8" marker-end="url(#arrow)">
+      <path d="M190 130 H252"/>
+      <path d="M418 130 C450 130 450 76 482 76"/>
+      <path d="M418 130 H482"/>
+      <path d="M418 130 C450 130 450 184 482 184"/>
+      <path d="M190 330 H252"/>
+      <path d="M418 330 H482"/>
+      <path d="M648 76 C700 76 700 200 752 210"/>
+      <path d="M648 130 C690 130 700 210 752 214"/>
+      <path d="M648 184 C690 184 710 216 752 218"/>
+      <path d="M648 330 C700 330 700 230 752 224"/>
+      <path d="M918 220 C950 220 950 110 982 110"/>
+      <path d="M918 220 H982"/>
+      <path d="M918 220 C950 220 950 330 982 330"/>
+      <animate attributeName="stroke-dashoffset" values="28;0" dur="1s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- Source nodes -->
+    <g>
+      <rect x="40" y="100" width="150" height="60" rx="12" fill="#0f172a" stroke="#5eead4" stroke-opacity="0.7"/>
+      <text x="115" y="126" text-anchor="middle" font-size="15" font-weight="700" fill="#e2e8f0">Webcam</text>
+      <text x="115" y="146" text-anchor="middle" font-size="12" fill="#94a3b8">640×480 frames</text>
+    </g>
+    <g>
+      <rect x="40" y="300" width="150" height="60" rx="12" fill="#0f172a" stroke="#a78bfa" stroke-opacity="0.7"/>
+      <text x="115" y="326" text-anchor="middle" font-size="15" font-weight="700" fill="#e2e8f0">Screen</text>
+      <text x="115" y="346" text-anchor="middle" font-size="12" fill="#94a3b8">captured in memory</text>
+    </g>
+
+    <!-- Stage 1 -->
+    <g>
+      <rect x="252" y="100" width="166" height="60" rx="12" fill="#0f172a" stroke="#334155"/>
+      <text x="335" y="126" text-anchor="middle" font-size="15" font-weight="700" fill="#e2e8f0">Face detection</text>
+      <text x="335" y="146" text-anchor="middle" font-size="12" fill="#94a3b8">MediaPipe · user vs observers</text>
+    </g>
+    <g>
+      <rect x="252" y="300" width="166" height="60" rx="12" fill="#0f172a" stroke="#334155"/>
+      <text x="335" y="326" text-anchor="middle" font-size="15" font-weight="700" fill="#e2e8f0">OCR</text>
+      <text x="335" y="346" text-anchor="middle" font-size="12" fill="#94a3b8">Tesseract · every N frames</text>
+    </g>
+
+    <!-- Signals -->
+    <g font-size="14" font-weight="700">
+      <rect x="482" y="54" width="166" height="44" rx="10" fill="#0f766e" fill-opacity="0.25" stroke="#5eead4" stroke-opacity="0.7"/>
+      <text x="565" y="73" text-anchor="middle" fill="#99f6e4">Gaze</text>
+      <text x="565" y="90" text-anchor="middle" font-size="11" font-weight="400" fill="#94a3b8">face-pose + Kalman · w 0.32</text>
+
+      <rect x="482" y="108" width="166" height="44" rx="10" fill="#1d4ed8" fill-opacity="0.22" stroke="#60a5fa" stroke-opacity="0.7"/>
+      <text x="565" y="127" text-anchor="middle" fill="#bfdbfe">Proximity</text>
+      <text x="565" y="144" text-anchor="middle" font-size="11" font-weight="400" fill="#94a3b8">face-box area · w 0.28</text>
+
+      <rect x="482" y="162" width="166" height="44" rx="10" fill="#4338ca" fill-opacity="0.22" stroke="#818cf8" stroke-opacity="0.7"/>
+      <text x="565" y="181" text-anchor="middle" fill="#c7d2fe">Dwell + crowd</text>
+      <text x="565" y="198" text-anchor="middle" font-size="11" font-weight="400" fill="#94a3b8">≤ 20 pts · +18 if &gt;1 face</text>
+
+      <rect x="482" y="308" width="166" height="44" rx="10" fill="#6d28d9" fill-opacity="0.22" stroke="#a78bfa" stroke-opacity="0.7"/>
+      <text x="565" y="327" text-anchor="middle" fill="#ddd6fe">PII sensitivity</text>
+      <text x="565" y="344" text-anchor="middle" font-size="11" font-weight="400" fill="#94a3b8">8 regex categories · w 0.30</text>
+    </g>
+
+    <!-- Fusion -->
+    <g>
+      <rect x="752" y="170" width="166" height="100" rx="16" fill="#0f172a" stroke="url(#fuse)" stroke-width="2.5">
+        <animate attributeName="stroke-width" values="2.5;4.5;2.5" dur="2s" repeatCount="indefinite"/>
+      </rect>
+      <text x="835" y="206" text-anchor="middle" font-size="16" font-weight="800" fill="#e2e8f0">Risk fusion</text>
+      <text x="835" y="228" text-anchor="middle" font-size="12" fill="#94a3b8">weighted, clipped</text>
+      <text x="835" y="252" text-anchor="middle" font-size="22" font-weight="800" fill="url(#fuse)">0 – 100</text>
+    </g>
+
+    <!-- Actions -->
+    <g font-size="14" font-weight="700">
+      <rect x="982" y="86" width="178" height="48" rx="10" fill="#065f46" fill-opacity="0.3" stroke="#34d399" stroke-opacity="0.8"/>
+      <text x="1071" y="106" text-anchor="middle" fill="#a7f3d0">No action</text>
+      <text x="1071" y="124" text-anchor="middle" font-size="11" font-weight="400" fill="#94a3b8">score &lt; 35 · LOW</text>
+
+      <rect x="982" y="196" width="178" height="48" rx="10" fill="#92400e" fill-opacity="0.3" stroke="#fbbf24" stroke-opacity="0.8"/>
+      <text x="1071" y="216" text-anchor="middle" fill="#fde68a">Selective blur</text>
+      <text x="1071" y="234" text-anchor="middle" font-size="11" font-weight="400" fill="#94a3b8">35 – 75 · PII regions only</text>
+
+      <rect x="982" y="306" width="178" height="48" rx="10" fill="#9f1239" fill-opacity="0.3" stroke="#fb7185" stroke-opacity="0.8"/>
+      <text x="1071" y="326" text-anchor="middle" fill="#fecdd3">Decoy overlay</text>
+      <text x="1071" y="344" text-anchor="middle" font-size="11" font-weight="400" fill="#94a3b8">≥ 75 · placeholder text</text>
+    </g>
+
+    <!-- Active-tier highlight cycling through the three actions -->
+    <rect x="976" y="80" width="190" height="60" rx="13" fill="none" stroke="#e2e8f0" stroke-width="2" stroke-opacity="0.85">
+      <animate attributeName="y" values="80;80;190;190;300;300;80" keyTimes="0;0.28;0.33;0.61;0.66;0.95;1" dur="6s" repeatCount="indefinite"/>
+    </rect>
+
+    <text x="600" y="400" text-anchor="middle" font-size="12" fill="#64748b">All processing is local · logs keep categories, boxes and timings only — never frames, screenshots or OCR text</text>
+  </g>
+</svg>

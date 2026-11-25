@@ -47,3 +47,19 @@ Thumbs.db
 # Environment
 .env
 .env.local
+
+# ---- OcuVeil: keep the public repo to source, tests, docs ----
+# Unrelated Express starter scaffold
+my-project/
+# Empty legacy folder
+logging/
+# Locally generated experiment outputs (pilot logs, CSVs, plots).
+# Regenerate with the scripts in experiments/ and evaluation/.
+results/
+# Extended synthetic set is regenerated with:
+#   python -m experiments.generate_synthetic_screens --set extended --seed 2027
+test_data/pii_extended/
+# Private working notes for the paper revision
+NEXT_STEPS.md
+REVISION_STATUS.md
+implementation_guide_for_prism.md

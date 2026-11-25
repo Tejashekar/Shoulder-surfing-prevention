@@ -1,0 +1,16 @@
+sample_id,image_path,ground_truth_pii_type,ground_truth_bbox,ground_truth_annotations,expected_synthetic_text,condition
+S01,sample_01.png,email,"[24, 51, 471, 28]","[{""type"": ""email"", ""bbox"": [24, 51, 471, 28]}]",Email: demo.user@example.invalid,normal
+S02,sample_02.png,phone,"[24, 51, 329, 22]","[{""type"": ""phone"", ""bbox"": [24, 51, 329, 22]}]",Phone: +1 202 555 0101,normal
+S03,sample_03.png,password,"[24, 51, 354, 28]","[{""type"": ""password"", ""bbox"": [24, 51, 354, 28]}]",Password: sample-only-42,normal
+S04,sample_04.png,aadhaar,"[24, 51, 312, 22]","[{""type"": ""aadhaar"", ""bbox"": [24, 51, 312, 22]}]",ID-like: 1111 2222 3333,normal
+S05,sample_05.png,account,"[23, 51, 436, 22]","[{""type"": ""account"", ""bbox"": [23, 51, 436, 22]}]",Account number: 123456789012,normal
+S06,sample_06.png,address,"[23, 51, 375, 28]","[{""type"": ""address"", ""bbox"": [23, 51, 375, 28]}]",Address: 12 Example Street,normal
+S07,sample_07.png,,,[],Meeting notes: bring the blue notebook,normal
+S08,sample_08.png,email;phone,"[24, 51, 471, 28]","[{""type"": ""email"", ""bbox"": [24, 51, 471, 28]}, {""type"": ""phone"", ""bbox"": [24, 121, 290, 22]}]","Email: demo.user@example.invalid
+Phone: 202-555-0101",mixed-layout
+S09,sample_09.png,password,"[24, 48, 177, 14]","[{""type"": ""password"", ""bbox"": [24, 48, 177, 14]}]",Password: sample-only-42,small-font
+S10,sample_10.png,email,"[24, 51, 471, 28]","[{""type"": ""email"", ""bbox"": [24, 51, 471, 28]}]",Email: demo.user@example.invalid,low-contrast
+S11,sample_11.png,account,"[23, 54, 668, 33]","[{""type"": ""account"", ""bbox"": [23, 54, 668, 33]}]",Account number: 123456789012,large-font
+S12,sample_12.png,phone,"[24, 51, 257, 22]","[{""type"": ""phone"", ""bbox"": [24, 51, 257, 22]}]",Phone: 202-555-01,partial-text
+S13,sample_13.png,address,"[24, 51, 468, 25]","[{""type"": ""address"", ""bbox"": [24, 51, 468, 25]}]",Address: 12 Example Street,alternate-font
+S14,sample_14.png,email,"[24, 51, 471, 28]","[{""type"": ""email"", ""bbox"": [24, 51, 471, 28]}]",Email: demo.user@example.invalid,noisy-background
